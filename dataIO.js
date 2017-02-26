@@ -41,6 +41,112 @@ var getTaxiMes = function () {
     return promise;
 }
 
+var optAreaAns = function (areaTaxiAns) {
+    var promise = new Promise(async function(resolve, reject){
+        
+        var cityAreaCalc = sequelize.define('cityAreaCalc', {
+            id: {
+                type: Sequelize.INTEGER,
+                autoIncrement: true,
+                primaryKey: true
+            },
+            areaName: Sequelize.STRING(50),
+            calcTime: Sequelize.DATE,
+            areaEva: Sequelize.DOUBLE,
+            taxiNum: Sequelize.INTEGER,
+            upNum: Sequelize.INTEGER,
+            normNum: Sequelize.DOUBLE
+        }, {
+                timestamps: false,
+                freezeTableName: true
+            });
+
+        try{
+            var ans = await cityAreaCalc.bulkCreate(areaTaxiAns);
+            resolve(JSON.stringify(ans));
+
+        }catch(error){
+            reject(console.error(error));
+        }
+    });
+    return promise;
+}
+
+var getAreaAns = function (timeA, timeN) {
+    var promise = new Promise(async function(resolve, reject){
+        
+        var cityAreaCalc = sequelize.define('cityAreaCalc', {
+            id: {
+                type: Sequelize.INTEGER,
+                autoIncrement: true,
+                primaryKey: true
+            },
+            areaName: Sequelize.STRING(50),
+            calcTime: Sequelize.DATE,
+            areaEva: Sequelize.DOUBLE,
+            taxiNum: Sequelize.INTEGER,
+            upNum: Sequelize.INTEGER,
+            normNum: Sequelize.DOUBLE
+        }, {
+                timestamps: false,
+                freezeTableName: true
+            });
+
+        try{
+            var areaClacAns = await cityAreaCalc.findAll({
+                where: {
+                    calcTime:{
+                       '$between': [timeA, timeN] 
+                   }
+                }
+            });
+            resolve(JSON.stringify(areaClacAns));
+
+        }catch(error){
+            reject(console.error(error));
+        }
+    });
+    return promise;
+}
+
+var getAreaAnsO = function (areaName, timeA, timeN) {
+    var promise = new Promise(async function(resolve, reject){
+        
+        var cityAreaCalc = sequelize.define('cityAreaCalc', {
+            id: {
+                type: Sequelize.INTEGER,
+                autoIncrement: true,
+                primaryKey: true
+            },
+            areaName: Sequelize.STRING(50),
+            calcTime: Sequelize.DATE,
+            areaEva: Sequelize.DOUBLE,
+            taxiNum: Sequelize.INTEGER,
+            upNum: Sequelize.INTEGER,
+            normNum: Sequelize.DOUBLE
+        }, {
+                timestamps: false,
+                freezeTableName: true
+            });
+
+        try{
+            var areaClacAns = await cityAreaCalc.findAll({
+                where: {
+                    areaName: areaName,
+                    calcTime: {
+                       '$between': [timeA, timeN] 
+                   }
+                }
+            });
+            resolve(JSON.stringify(areaClacAns));
+
+        }catch(error){
+            reject(console.error(error));
+        }
+    });
+    return promise;
+}
+
 var getTkPnts = function (date, timeA, timeN) {
     var promise = new Promise(async function(resolve, reject){
         var tkPnts = sequelize.define('trkpnt_'+date, {

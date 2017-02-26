@@ -1,5 +1,5 @@
 var fs = require('fs');
-var dataConvert = require('../dataConvert.js');
+var dataConvert = require('../module/dataConvert.js');
 
 module.exports = {
     'GET /cityArea': async (ctx, next) => {

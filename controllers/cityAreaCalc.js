@@ -1,4 +1,4 @@
-var taxiCalc = require('../taxiCalc.js');
+var taxiCalc = require('../module/taxiCalc.js');
 
 module.exports = {
     'GET /cityAreaCalc': async (ctx, next) => {

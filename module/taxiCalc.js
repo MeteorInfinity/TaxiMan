@@ -1,4 +1,4 @@
-var dbOpreate = require('./dataIO.js');
+var dbOpreate = require('../dataIO.js');
 var gdal = require('gdal'); 
 var moment = require('moment');
 
@@ -48,7 +48,12 @@ function calcArea () {
 				//标准车量计算 (区域上客点数量 / 总上客点数量 * 出租车总量)
 				var areaNormNum = areaUpNum / upPntSum * taxiSum;
 				var areaNumEva = areaTaixNum / areaNormNum * 100;
-				var areaAns = {"name":feature.fields.get(0),"areaEva":areaNumEva,"taxiNum":areaTaixNum,"upNum":areaUpNum,"normNum":areaNormNum};
+
+				var mtime = moment("2017-01-01 18:00:00"); //test Time
+				//var mtime = moment();
+				var calcTime = mtime.format('YYYY-MM-DD HH:mm:ss');
+
+				var areaAns = {"areaName":feature.fields.get(0),"calcTime":calcTime,"areaEva":areaNumEva,"taxiNum":areaTaixNum,"upNum":areaUpNum,"normNum":areaNormNum};
 
 				areaAnsC[i] = areaAns;
 			});
