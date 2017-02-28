@@ -62,7 +62,9 @@ var optAreaAns = function (areaTaxiAns) {
             });
 
         try{
-            var ans = await cityAreaCalc.bulkCreate(areaTaxiAns);
+            var ans = await cityAreaCalc.bulkCreate(areaTaxiAns,{
+                fields: ["areaName","calcTime","areaEva","taxiNum","upNum","normNum"]
+            });
             resolve(JSON.stringify(ans));
 
         }catch(error){
@@ -76,11 +78,6 @@ var getAreaAns = function (timeA, timeN) {
     var promise = new Promise(async function(resolve, reject){
         
         var cityAreaCalc = sequelize.define('cityAreaCalc', {
-            id: {
-                type: Sequelize.INTEGER,
-                autoIncrement: true,
-                primaryKey: true
-            },
             areaName: Sequelize.STRING(50),
             calcTime: Sequelize.DATE,
             areaEva: Sequelize.DOUBLE,
@@ -113,11 +110,6 @@ var getAreaAnsO = function (areaName, timeA, timeN) {
     var promise = new Promise(async function(resolve, reject){
         
         var cityAreaCalc = sequelize.define('cityAreaCalc', {
-            id: {
-                type: Sequelize.INTEGER,
-                autoIncrement: true,
-                primaryKey: true
-            },
             areaName: Sequelize.STRING(50),
             calcTime: Sequelize.DATE,
             areaEva: Sequelize.DOUBLE,
@@ -185,3 +177,6 @@ var getTkPnts = function (date, timeA, timeN) {
 
 exports.getTaxiMes = getTaxiMes;
 exports.getTkPnts = getTkPnts;
+exports.optAreaAns = optAreaAns;
+exports.getAreaAns = getAreaAns;
+exports.getAreaAnsO = getAreaAnsO;

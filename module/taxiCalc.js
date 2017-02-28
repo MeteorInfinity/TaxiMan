@@ -47,13 +47,22 @@ function calcArea () {
 
 				//标准车量计算 (区域上客点数量 / 总上客点数量 * 出租车总量)
 				var areaNormNum = areaUpNum / upPntSum * taxiSum;
-				var areaNumEva = areaTaixNum / areaNormNum * 100;
+				var areaNumEva = (areaNormNum || areaNormNum != 0)?(areaTaixNum / areaNormNum * 100):100;
 
 				var mtime = moment("2017-01-01 18:00:00"); //test Time
 				//var mtime = moment();
 				var calcTime = mtime.format('YYYY-MM-DD HH:mm:ss');
 
 				var areaAns = {"areaName":feature.fields.get(0),"calcTime":calcTime,"areaEva":areaNumEva,"taxiNum":areaTaixNum,"upNum":areaUpNum,"normNum":areaNormNum};
+				
+				for (var fieldID in areaAns){
+				    if (!areaAns[fieldID]) {
+						areaAns[fieldID] = 0;
+						if(fieldID == "areaEva"){
+							areaAns[fieldID] = 100;
+						}
+					}
+				}
 
 				areaAnsC[i] = areaAns;
 			});

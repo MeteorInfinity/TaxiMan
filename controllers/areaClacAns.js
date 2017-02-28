@@ -1,4 +1,4 @@
-var readAreaAns = require(../module/readAreaAns.js)
+var readAreaAns = require("../module/readAreaAns.js")
 
 module.exports = {
     'GET /areaClacAns': async (ctx, next) => {
