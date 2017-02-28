@@ -78,6 +78,11 @@ var getAreaAns = function (timeA, timeN) {
     var promise = new Promise(async function(resolve, reject){
         
         var cityAreaCalc = sequelize.define('cityAreaCalc', {
+            id: {
+                type: Sequelize.INTEGER,
+                autoIncrement: true,
+                primaryKey: true
+            },
             areaName: Sequelize.STRING(50),
             calcTime: Sequelize.DATE,
             areaEva: Sequelize.DOUBLE,
@@ -110,6 +115,11 @@ var getAreaAnsO = function (areaName, timeA, timeN) {
     var promise = new Promise(async function(resolve, reject){
         
         var cityAreaCalc = sequelize.define('cityAreaCalc', {
+            id: {
+                type: Sequelize.INTEGER,
+                autoIncrement: true,
+                primaryKey: true
+            },
             areaName: Sequelize.STRING(50),
             calcTime: Sequelize.DATE,
             areaEva: Sequelize.DOUBLE,

@@ -8,12 +8,10 @@ var cors = require('kcors');
 const app = new Koa();
 
 // init schedule (Calc):
-app.use(async (ctx,next) => {
-	console.log("Timing Task Setting start");
-	var tcAreaTask = schedule.scheduleJob('0 40 * * * *', timingCalc.tcAreaTaxi());
-	console.log("Timing Task Setting SUCCESS");
-	await next();
+var tcAreaTask = schedule.scheduleJob('0 0 * * * *', function(){
+	timingCalc.tcAreaTaxi();
 });
+console.log("Timing Task Setting SUCCESS");
 
 // log request URL:
 app.use(async (ctx, next) => {
