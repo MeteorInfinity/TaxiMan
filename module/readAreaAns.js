@@ -2,11 +2,11 @@ var taxiCalc = require('../module/taxiCalc.js');
 var dataIO = require('../dataIO.js');
 var moment = require('moment');
 
-function readAreaAns(areaName, interval){
+module.exports = function(areaName, interval){
     var promise = new Promise(async function(resolve, reject){
 
-    	moment.locale('zh-cn')
-		var mtime = moment("2017-01-01 18:00:00"); //test Time
+    	moment.locale('zh-cn');
+		var mtime = moment("2017-01-01 10:00:00"); //test Time
 		//var mtime = moment();
 
 		var timeN = mtime.format('YYYY-MM-DD HH:mm:ss');
@@ -23,5 +23,3 @@ function readAreaAns(areaName, interval){
 	});
     return promise;
 }
-
-exports.readAreaAns = readAreaAns

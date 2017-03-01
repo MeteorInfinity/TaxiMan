@@ -51,6 +51,7 @@ var optAreaAns = function (areaTaxiAns) {
                 primaryKey: true
             },
             areaName: Sequelize.STRING(50),
+            areaID: Sequelize.INTEGER,
             calcTime: Sequelize.DATE,
             areaEva: Sequelize.DOUBLE,
             taxiNum: Sequelize.INTEGER,
@@ -63,7 +64,7 @@ var optAreaAns = function (areaTaxiAns) {
 
         try{
             var ans = await cityAreaCalc.bulkCreate(areaTaxiAns,{
-                fields: ["areaName","calcTime","areaEva","taxiNum","upNum","normNum"]
+                fields: ["areaName","areaID","calcTime","areaEva","taxiNum","upNum","normNum"]
             });
             resolve(JSON.stringify(ans));
 
@@ -84,6 +85,7 @@ var getAreaAns = function (timeA, timeN) {
                 primaryKey: true
             },
             areaName: Sequelize.STRING(50),
+            areaID: Sequelize.INTEGER,
             calcTime: Sequelize.DATE,
             areaEva: Sequelize.DOUBLE,
             taxiNum: Sequelize.INTEGER,
@@ -111,7 +113,7 @@ var getAreaAns = function (timeA, timeN) {
     return promise;
 }
 
-var getAreaAnsO = function (areaName, timeA, timeN) {
+var getAreaAnsO = function (areaID, timeA, timeN) {
     var promise = new Promise(async function(resolve, reject){
         
         var cityAreaCalc = sequelize.define('cityAreaCalc', {
@@ -121,6 +123,7 @@ var getAreaAnsO = function (areaName, timeA, timeN) {
                 primaryKey: true
             },
             areaName: Sequelize.STRING(50),
+            areaID: Sequelize.INTEGER,
             calcTime: Sequelize.DATE,
             areaEva: Sequelize.DOUBLE,
             taxiNum: Sequelize.INTEGER,
@@ -134,7 +137,7 @@ var getAreaAnsO = function (areaName, timeA, timeN) {
         try{
             var areaClacAns = await cityAreaCalc.findAll({
                 where: {
-                    areaName: areaName,
+                    areaID: areaID,
                     calcTime: {
                        '$between': [timeA, timeN] 
                    }

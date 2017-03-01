@@ -20,6 +20,8 @@ function calcArea () {
 			var taxiSum = tkPnts.length;
 			var upPntSum = upPnts.length;
 
+			var areaID = 1;
+
 			layer.features.forEach(function(feature, i) {
 				var areaUpNum = 0;
 				var areaTaixNum = 0;
@@ -49,11 +51,11 @@ function calcArea () {
 				var areaNormNum = areaUpNum / upPntSum * taxiSum;
 				var areaNumEva = (areaNormNum || areaNormNum != 0)?(areaTaixNum / areaNormNum * 100):100;
 
-				var mtime = moment("2017-01-01 18:00:00"); //test Time
+				var mtime = moment("2017-01-01 10:00:00"); //test Time
 				//var mtime = moment();
 				var calcTime = mtime.format('YYYY-MM-DD HH:mm:ss');
 
-				var areaAns = {"areaName":feature.fields.get(0),"calcTime":calcTime,"areaEva":areaNumEva,"taxiNum":areaTaixNum,"upNum":areaUpNum,"normNum":areaNormNum};
+				var areaAns = {"areaName":feature.fields.get(0),"areaID":areaID,"calcTime":calcTime,"areaEva":areaNumEva,"taxiNum":areaTaixNum,"upNum":areaUpNum,"normNum":areaNormNum};
 				
 				for (var fieldID in areaAns){
 				    if (!areaAns[fieldID]) {
@@ -64,6 +66,7 @@ function calcArea () {
 					}
 				}
 
+				areaID++;
 				areaAnsC[i] = areaAns;
 			});
 			resolve(areaAnsC);
@@ -125,7 +128,6 @@ function upPntsCalc(tkPntsArr){
 function readTaxiPnt (interval){
 	var promise = new Promise(async function(resolve, reject){
 		
-		moment.locale('zh-cn')
 		var mtime = moment("2017-01-01 18:00:00"); //test Time
 		//var mtime = moment();
 
