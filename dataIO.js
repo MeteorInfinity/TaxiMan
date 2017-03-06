@@ -163,7 +163,8 @@ var getTkPnts = function (date, timeA, timeN) {
             plateNum: Sequelize.STRING(50),
             phoneNum: Sequelize.STRING(50),
             time: Sequelize.DATE,
-            lon: Sequelize.STRING(255),
+            lng: Sequelize.STRING(255),
+            lat: Sequelize.STRING(255),
             speed: Sequelize.DOUBLE,
             direction: Sequelize.STRING(9),
             state: Sequelize.STRING(9)

@@ -7,8 +7,8 @@ module.exports = {
             var areaID = ctx.request.query.areaID;
             var interval = ctx.request.query.interval;
 
-    		ctx.response.body = await readAreaAns(areaID ,interval);
-    		console.log("GET City Area Calc Result for " + interval + "Hours SUCCESS " + ctx.response.body.length);
+    		ctx.response.body = await readAreaAns.readAreaAns(areaID ,interval);
+    		console.log("GET City Area " + areaID + " Calc Result for " + interval + "Hours SUCCESS " + ctx.response.body.length);
     	}catch(error){
     		console.error(error);
     	}
