@@ -4,12 +4,13 @@ const host = '127.0.0.1';
 const port = 6969;
 
 module.exports = function(bytes){
-	var promise = new Promise(resolve,reject){
-
-		let client = new net.Socket();
+	var promise = new Promise(async function(resolve, reject){
 
 		try{
-			client.connect(port, host, function() {
+
+			let client = new net.Socket();
+
+			client.connect(port, host, function(){
 
 			    console.log('Socket Clinet Connected To : ' + host + ':' + port);
 			    // 建立连接后立即向服务器发送数据，服务器将收到这些数据 
@@ -34,6 +35,6 @@ module.exports = function(bytes){
 		}catch(error){
 			reject(console.error(error));
 		}
-	}
+	});
 	return promise;	
 }

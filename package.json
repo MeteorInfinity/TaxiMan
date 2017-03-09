@@ -14,6 +14,9 @@
     "taxi",
     "analysis"
   ],
+  "config": {
+    "unsafe-perm":true
+  },
   "author": "METEOR@+1S",
   "license": "Apache-2.0",
   "dependencies": {

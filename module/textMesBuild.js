@@ -1,10 +1,10 @@
 const iconv = require('iconv-lite');
 
 Buffer.prototype.toByteArray = function(){
-	return Array.prototype.slice.call(this, 0)
+	return Array.prototype.slice.call(this, 0);
 }
 
-module.export = funtion(simCardStr, textMes){
+module.exports = function(simCardStr, textMes){
 
 	var textMesByte = iconv.encode(textMes,"GBK");
 	var tmbLength = textMesByte.length;

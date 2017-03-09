@@ -25,7 +25,5 @@ app.use(bodyParser());
 app.use(cors());
 app.use(controller());
 
-io.attach(app);
-
 app.listen(8086);
 console.log('app started at port 8086...');
