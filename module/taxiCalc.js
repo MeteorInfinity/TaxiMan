@@ -56,12 +56,11 @@ function calcDock(){
 					dockEva = (dockCRate / (dockCRateN * (dockTaixNum / dockNormNum))) * 100;
 				}
 
-				//var mtime = moment("2017-01-01 10:00:00"); //test Time
 				var mtime = moment();
 				mtime.set({'year': 2017, 'month': 1-1, 'date': 1}); //test time 2
-				var calcTime = mtime.format('YYYY-MM-DD HH:mm:ss');
+				var ctime = mtime.format('YYYY-MM-DD HH:mm:ss');
 
-				var dockAns = {"dockID":feature.fields.get(0),"calcTime":calcTime,"dockEva":dockEva,"taxiNum":dockTaixNum,"upNum":dockUpNum,"normNum":dockNormNum};
+				var dockAns = {"dockID":feature.fields.get(0),"calcTime":ctime,"dockEva":dockEva,"taxiNum":dockTaixNum,"upNum":dockUpNum,"normNum":dockNormNum};
 				
 				for (var fieldID in dockAns){
 				    if (!dockAns[fieldID]) {
@@ -131,12 +130,11 @@ function calcArea(){
 				var areaNormNum = areaUpNum / upPntSum * taxiSum;
 				var areaNumEva = (areaNormNum || areaNormNum != 0)?(areaTaixNum / areaNormNum * 100):100;
 
-				//var mtime = moment("2017-01-01 10:00:00"); //test Time
 				var mtime = moment();
 				mtime.set({'year': 2017, 'month': 1-1, 'date': 1}); //test time 2
-				var calcTime = mtime.format('YYYY-MM-DD HH:mm:ss');
+				var ctime = mtime.format('YYYY-MM-DD HH:mm:ss');
 
-				var areaAns = {"areaName":feature.fields.get(0),"areaID":areaID,"calcTime":calcTime,"areaEva":areaNumEva,"taxiNum":areaTaixNum,"upNum":areaUpNum,"normNum":areaNormNum};
+				var areaAns = {"areaName":feature.fields.get(0),"areaID":areaID,"calcTime":ctime,"areaEva":areaNumEva,"taxiNum":areaTaixNum,"upNum":areaUpNum,"normNum":areaNormNum};
 				
 				for (var fieldID in areaAns){
 				    if (!areaAns[fieldID]) {
@@ -208,9 +206,9 @@ function upPntsCalc(tkPntsArr){
 // 读取数据库中出租车点信息(时间间隔)
 function readTaxiPnt(interval){
 	var promise = new Promise(async function(resolve, reject){
-		
-		var mtime = moment("2017-01-01 18:00:00"); //test Time
-		//var mtime = moment();
+
+		var mtime = moment();
+		mtime.set({'year': 2017, 'month': 1-1, 'date': 1}); //test time 2
 
 		var date = mtime.format('YYYY-MM-DD');
 		var timeN = mtime.format('YYYY-MM-DD HH:mm:ss');
